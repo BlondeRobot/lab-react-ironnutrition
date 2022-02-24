@@ -5,11 +5,13 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 import Search from './components/Search';
+import TodaysFood from './components/TodaysFood';
 
 function App() {
 
   const [foodList, setFoods] = useState(foods);
-  const allFoods = [...foods]
+  const [todaysFood,setTodaysFood] = useState([])
+
 
   const addNewFood = (newFood) => {
     const updatedFoods = [...foodList, newFood];
@@ -26,10 +28,16 @@ function App() {
     }
   }
 
+  const addTodaysFood = (todaysItems) => {
+    const todaysMenu = [...todaysFood, todaysItems]
+    setTodaysFood(todaysMenu)
+  }
+
   return (
     <div className="App">
-      <Search onFilter={handleFilter} />
       <div className="column">
+        <TodaysFood todaysFood={todaysFood} />
+        <Search onFilter={handleFilter} />
         {foodList.map((item, index) => {
           return (
             <FoodBox
@@ -37,11 +45,12 @@ function App() {
               name={item.name}
               calories={item.calories}
               image={item.image}
+              addTodaysFood={addTodaysFood}
             />
           );
         })}
+        <AddFood addNewFood={addNewFood} />
       </div>
-      <AddFood addNewFood={addNewFood} />
     </div>
   );
 }

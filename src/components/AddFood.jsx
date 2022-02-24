@@ -15,7 +15,6 @@ function AddFood({addNewFood}) {
         e.preventDefault();
         const newFood = { name, image, calories };
 
-        console.log('Submitted: ', newFood);
         addNewFood(newFood);
 
         setName("")

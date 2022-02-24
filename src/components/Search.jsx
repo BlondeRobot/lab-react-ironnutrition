@@ -6,7 +6,7 @@ function Search ({onFilter}) {
     const [input, setInput] = useState('');
 
     const handleInput = (e) => {
-        console.log('value:', e.target.value);
+
         e.persist();  
       setInput((previous) => {
         return {
